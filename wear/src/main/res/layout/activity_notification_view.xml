@@ -8,6 +8,7 @@
     android:background="@color/dark_grey"
     android:padding="@dimen/box_inset_layout_padding"
     tools:context="edu.kaist.khw.overwatch.NotificationViewActivity"
+    android:keepScreenOn="true"
     tools:deviceIds="wear">
 
     <LinearLayout

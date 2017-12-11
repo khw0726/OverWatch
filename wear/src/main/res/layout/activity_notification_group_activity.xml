@@ -8,6 +8,7 @@
     android:background="@color/dark_grey"
     android:padding="@dimen/box_inset_layout_padding"
     tools:context="edu.kaist.khw.overwatch.NotificationGroupActivity"
+    android:keepScreenOn="true"
     tools:deviceIds="wear">
 
     <LinearLayout
@@ -23,11 +24,12 @@
             android:layout_weight="1">
             <FrameLayout
                 android:layout_width="75dp"
-                android:layout_height="75dp">
+                android:layout_height="75dp"
+                android:id="@+id/priority1_frame"
+                android:visibility="invisible">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/mail"
                     android:id="@+id/priority1_img"/>
                 <TextView
                     android:layout_width="20dp"
@@ -36,7 +38,7 @@
                     android:layout_gravity="top|right"
                     android:background="@drawable/circle"
                     android:textSize="12sp"
-                    android:text="a"
+                    android:text="0"
                     android:id="@+id/priority1_text"/>
             </FrameLayout>
 
@@ -53,11 +55,12 @@
                 android:layout_height="75dp"
                 android:layout_gravity="left|bottom"
                 android:layout_marginLeft="15dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:id="@+id/priority3_frame"
+                android:visibility="invisible">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/slack"
                     android:id="@+id/priority3_img"
                     />
 
@@ -68,19 +71,20 @@
                     android:layout_gravity="top|right"
                     android:textAlignment="center"
                     android:background="@drawable/circle"
-                    android:text="a"
+                    android:text="0"
                     android:textSize="12sp" />
             </FrameLayout>
             <FrameLayout
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="right|bottom"
+                android:id="@+id/priority2_frame"
                 android:layout_marginRight="15dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:visibility="invisible">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/kakaotalk"
                     android:id="@+id/priority2_img"
                     />
                 <TextView
@@ -90,7 +94,7 @@
                     android:background="@drawable/circle"
                     android:textSize="12sp"
                     android:textAlignment="center"
-                    android:text="a"
+                    android:text="0"
                     android:id="@+id/priority2_text"/>
             </FrameLayout>
 

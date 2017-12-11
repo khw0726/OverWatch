@@ -27,6 +27,7 @@ public class NotificationViewActivity extends WearableActivity {
         Intent intent = getIntent();
 
         String json = intent.getStringExtra(MainActivity.TAG_JSON);
+        final boolean isGroupView = intent.getBooleanExtra("isGroupView",false);
 //        String notiContent = intent.getStringExtra(MainActivity.TAG_NOTICONTENT);
 
 //        mAppNameView.setText(appName);
@@ -34,10 +35,17 @@ public class NotificationViewActivity extends WearableActivity {
 
         try {
             JSONObject noti = new JSONObject(json);
-            mAppNameView.setText(noti.getString("android.title"));
-            mNotiContentView.setText(noti.getString("android.fext"));
-            if(noti.getString("package").equals("com.kakao.talk")){
+            mAppNameView.setText(noti.getString("title"));
+            mNotiContentView.setText(noti.getString("text"));
+            String p = noti.getString("package");
+            if(p.equals("kakao")){
                 mAppIconView.setImageResource(R.drawable.kakaotalk);
+            } else if(p.equals("slack")){
+                mAppIconView.setImageResource(R.drawable.slack);
+            } else if(p.equals("mail")){
+                mAppIconView.setImageResource(R.drawable.mail);
+            } else  {
+                mAppIconView.setImageResource(R.drawable.ic_full_sad);
             }
 
         } catch (JSONException e) {
@@ -51,11 +59,15 @@ public class NotificationViewActivity extends WearableActivity {
                 return;
             }
 
-            public void onFinish(){
-                Intent i = new Intent(getApplicationContext(), NotificationGroupActivity.class);
-                i.putExtra("setTimer", true);
-                startActivity(i);
+            public void onFinish() {
+                if(isGroupView){
+                    Intent i = new Intent(getApplicationContext(), NotificationGroupActivity.class);
+                    i.putExtra("setTimer", true);
+                    startActivity(i);
+                }
                 finish();
+
+
             }
         }.start();
 
