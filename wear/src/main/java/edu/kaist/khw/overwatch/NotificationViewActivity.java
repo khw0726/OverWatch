@@ -8,6 +8,9 @@ import android.os.Vibrator;
 import android.support.wearable.activity.WearableActivity;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class NotificationViewActivity extends WearableActivity {
 
     private TextView mAppNameView, mNotiContentView;
@@ -22,11 +25,20 @@ public class NotificationViewActivity extends WearableActivity {
 
         Intent intent = getIntent();
 
-        String appName = intent.getStringExtra(MainActivity.TAG_APPNAME);
-        String notiContent = intent.getStringExtra(MainActivity.TAG_NOTICONTENT);
+        String json = intent.getStringExtra(MainActivity.TAG_JSON);
+//        String notiContent = intent.getStringExtra(MainActivity.TAG_NOTICONTENT);
 
-        mAppNameView.setText(appName);
-        mNotiContentView.setText(notiContent);
+//        mAppNameView.setText(appName);
+//        mNotiContentView.setText(notiContent);
+
+        try {
+            JSONObject noti = new JSONObject(json);
+            mAppNameView.setText(noti.getString("ex.android.title"));
+            mNotiContentView.setText(noti.getString("ex.android.bigtext"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         Vibrator v = (Vibrator) this.getApplicationContext().getSystemService(VIBRATOR_SERVICE);
         v.vibrate(300);
@@ -36,6 +48,8 @@ public class NotificationViewActivity extends WearableActivity {
             }
 
             public void onFinish(){
+                Intent i = new Intent(getApplicationContext(), NotificationGroupActivity.class);
+                startActivity(i);
                 finish();
             }
         }.start();

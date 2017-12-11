@@ -10,18 +10,43 @@
     tools:context="edu.kaist.khw.overwatch.NotificationGroupActivity"
     tools:deviceIds="wear">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/inner_frame_layout_padding"
-        app:boxedEdges="all">
-
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world" />
+            android:gravity="center_horizontal"
+            android:layout_gravity="top"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/juho" />
 
-    </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:layout_marginBottom="25dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/slack"
+                android:layout_gravity="left|bottom"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/kakaotalk"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
 </android.support.wear.widget.BoxInsetLayout>
-

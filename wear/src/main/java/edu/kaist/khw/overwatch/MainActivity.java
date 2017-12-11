@@ -16,14 +16,20 @@ import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class MainActivity extends WearableActivity implements
         DataApi.DataListener,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private TextView asdf = null;
-    public static final String TAG_APPNAME = "TAG_APPNAME";
-    public static final String TAG_NOTICONTENT = "TAG_NOTICONTENT";
+    private ArrayList<JSONObject> notis = null;
+    public static final String TAG_JSON = "TAG_JSON";
+//    public static final String TAG_NOTICONTENT = "TAG_NOTICONTENT";
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -38,6 +44,8 @@ public class MainActivity extends WearableActivity implements
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
+        notis = new ArrayList<>();
+        setAmbientEnabled();
     }
 
     @Override
@@ -69,7 +77,7 @@ public class MainActivity extends WearableActivity implements
                 DataItem item = event.getDataItem();
                 if (item.getUri().getPath().compareTo("/asdf") == 0) {
                     DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
-                    launchNotification(dataMap.getString(TAG_APPNAME), dataMap.getString(TAG_NOTICONTENT));
+                    launchNotification(dataMap.getString(TAG_JSON));
                 }
             } else if (event.getType() == DataEvent.TYPE_DELETED) {
                 // DataItem deleted
@@ -87,14 +95,30 @@ public class MainActivity extends WearableActivity implements
         return;
     }
 
+    private int getPriority(JSONObject n) {
+        //TODO: implement compute priority
+        return 1;
+    }
+
     // Our method to update the count
-    private void launchNotification(String appName, String notiContent) {
+    private void launchNotification(String json) {
 //        Log.wtf("ASDF", c);
 //        asdf.setText(c);
-        Intent intent = new Intent(this, NotificationViewActivity.class);
-        intent.putExtra(TAG_APPNAME, appName);
-        intent.putExtra(TAG_NOTICONTENT, notiContent);
-        startActivity(intent);
+
+        try {
+            JSONObject noti = new JSONObject(json);
+            noti.put("priority", getPriority(noti));
+            notis.add(noti);
+
+            Intent intent = new Intent(this, NotificationViewActivity.class);
+            intent.putExtra(TAG_JSON, noti.toString());
+//          intent.putExtra(TAG_NOTICONTENT, notiContent);
+            startActivity(intent);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         return;
     }
 
