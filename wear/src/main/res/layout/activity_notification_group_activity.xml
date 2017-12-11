@@ -27,7 +27,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/juho"
+                    android:src="@drawable/mail"
                     android:id="@+id/priority1_img"/>
                 <TextView
                     android:layout_width="20dp"

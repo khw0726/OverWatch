@@ -35,7 +35,7 @@ public class NotificationViewActivity extends WearableActivity {
         try {
             JSONObject noti = new JSONObject(json);
             mAppNameView.setText(noti.getString("android.title"));
-            mNotiContentView.setText(noti.getString("android.bigText"));
+            mNotiContentView.setText(noti.getString("android.fext"));
             if(noti.getString("package").equals("com.kakao.talk")){
                 mAppIconView.setImageResource(R.drawable.kakaotalk);
             }
@@ -53,6 +53,7 @@ public class NotificationViewActivity extends WearableActivity {
 
             public void onFinish(){
                 Intent i = new Intent(getApplicationContext(), NotificationGroupActivity.class);
+                i.putExtra("setTimer", true);
                 startActivity(i);
                 finish();
             }

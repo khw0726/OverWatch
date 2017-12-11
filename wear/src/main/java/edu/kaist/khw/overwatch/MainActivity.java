@@ -77,9 +77,14 @@ public class MainActivity extends WearableActivity implements
                 Log.wtf("ASDF", "dataChanged");
                 // DataItem changed
                 DataItem item = event.getDataItem();
-                if (item.getUri().getPath().compareTo("/asdf") == 0) {
+                if (item.getUri().getPath().compareTo("/individualView") == 0) {
                     DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
                     launchNotification(dataMap.getString(TAG_JSON));
+                }
+                else if(item.getUri().getPath().compareTo("/groupView") == 0) {
+                    Intent intent = new Intent(this, NotificationGroupActivity.class);
+                    intent.putExtra("setTimer", false);
+                    startActivity(intent);
                 }
             } else if (event.getType() == DataEvent.TYPE_DELETED) {
                 // DataItem deleted

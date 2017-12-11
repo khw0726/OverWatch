@@ -40,15 +40,18 @@ public class NotificationGroupActivity extends WearableActivity {
         } catch (JSONException e){
             e.printStackTrace();
         }
-        new CountDownTimer(3000, 1000) {
-            public void onTick(long millisUntilFinished){
-                return;
-            }
+        boolean setTimer = getIntent().getBooleanExtra("setTimer", false);
+        if(setTimer){
+            new CountDownTimer(3000, 1000) {
+                public void onTick(long millisUntilFinished){
+                    return;
+                }
 
-            public void onFinish(){
-                finish();
-            }
-        }.start();
+                public void onFinish(){
+                    finish();
+                }
+            }.start();
+        }
         // Enables Always-on
         setAmbientEnabled();
     }
