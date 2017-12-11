@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_JSON = "TAG_JSON";
     private static final String TAG_NOTICONTENT = "TAG_NOTICONTENT";
     private static GoogleApiClient mGoogleApiClient = null;
-    private static final String payload = "{\"number\":\"30\",\"ex.android.summaryText\":\"똑똑한 컴터 만들기\",\"tickerText\":\"유재명 : 발표 끝났다\",\"ex.android.bigText\":\"발표 끝났다\",\"category\":\"msg\",\"key\":\"0|com.kakao.talk|2|null|10163\",\"id\":\"2\",\"posttime\":\"1512461600483\",\"package\":\"com.kakao.talk\",\"ex.android.text\":\"발표 끝났다\",\"ex.android.template\":\"android.app.Notification$BigTextStyle\",\"groupKey\":\"0|com.kakao.talk|p:0\",\"ex.android.title\":\"유재명\"}";
+    private static final String payload = "{\"posttime\":1512987020357,\"package\":\"com.kakao.talk\",\"android.title\":\"이태경\",\"android.text\":\"일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데\",\"android.bigText\":\"일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데 일단 내가 보기엔 카톡만 저런데\"}";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

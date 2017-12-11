@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.wearable.activity.WearableActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -14,7 +15,7 @@ import org.json.JSONObject;
 public class NotificationViewActivity extends WearableActivity {
 
     private TextView mAppNameView, mNotiContentView;
-
+    private ImageView mAppIconView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,7 @@ public class NotificationViewActivity extends WearableActivity {
 
         mAppNameView = (TextView) findViewById(R.id.appName);
         mNotiContentView = findViewById(R.id.notiContent);
-
+        mAppIconView = findViewById(R.id.appIcon);
         Intent intent = getIntent();
 
         String json = intent.getStringExtra(MainActivity.TAG_JSON);
@@ -33,8 +34,11 @@ public class NotificationViewActivity extends WearableActivity {
 
         try {
             JSONObject noti = new JSONObject(json);
-            mAppNameView.setText(noti.getString("ex.android.title"));
-            mNotiContentView.setText(noti.getString("ex.android.bigtext"));
+            mAppNameView.setText(noti.getString("android.title"));
+            mNotiContentView.setText(noti.getString("android.bigText"));
+            if(noti.getString("package").equals("com.kakao.talk")){
+                mAppIconView.setImageResource(R.drawable.kakaotalk);
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

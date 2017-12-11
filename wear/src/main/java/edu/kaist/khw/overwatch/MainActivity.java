@@ -16,6 +16,7 @@ import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,8 +28,9 @@ public class MainActivity extends WearableActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private TextView asdf = null;
-    private ArrayList<JSONObject> notis = null;
+    public static ArrayList<JSONObject> notis = null;
     public static final String TAG_JSON = "TAG_JSON";
+    public static final String TAG_NOTIS = "TAG_NOTIS";
 //    public static final String TAG_NOTICONTENT = "TAG_NOTICONTENT";
 
     private GoogleApiClient mGoogleApiClient;
