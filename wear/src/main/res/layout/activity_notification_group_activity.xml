@@ -37,9 +37,17 @@
                     android:textAlignment="center"
                     android:layout_gravity="top|right"
                     android:background="@drawable/circle"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:text="0"
                     android:id="@+id/priority1_text"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:id="@+id/priority1_name"/>
             </FrameLayout>
 
 
@@ -72,7 +80,15 @@
                     android:textAlignment="center"
                     android:background="@drawable/circle"
                     android:text="0"
-                    android:textSize="12sp" />
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:id="@+id/priority3_name"/>
             </FrameLayout>
             <FrameLayout
                 android:layout_width="75dp"
@@ -92,10 +108,18 @@
                     android:layout_height="20dp"
                     android:layout_gravity="top|right"
                     android:background="@drawable/circle"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:textAlignment="center"
                     android:text="0"
                     android:id="@+id/priority2_text"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:textSize="12sp"
+                    android:id="@+id/priority2_name"/>
             </FrameLayout>
 
         </LinearLayout>

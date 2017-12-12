@@ -30,6 +30,11 @@ public class NotificationGroupActivity extends WearableActivity {
         TextView priority3TextView = findViewById(R.id.priority3_text);
         TextView[] textViews = {priority1TextView, priority2TextView, priority3TextView};
 
+        TextView priority1Name = findViewById(R.id.priority1_name);
+        TextView priority2Name = findViewById(R.id.priority2_name);
+        TextView priority3Name = findViewById(R.id.priority3_name);
+        TextView[] names = {priority1Name, priority2Name, priority3Name};
+
         ImageView priority1ImageView = findViewById(R.id.priority1_img);
         ImageView priority2ImageView = findViewById(R.id.priority2_img);
         ImageView priority3ImageView = findViewById(R.id.priority3_img);
@@ -56,16 +61,20 @@ public class NotificationGroupActivity extends WearableActivity {
                     frameLayouts[i].setVisibility(View.VISIBLE);
                     textViews[i].setText(Integer.toString(len));
                     imageViews[i].setImageResource(R.drawable.kakaotalk);
+                    names[i].setVisibility(View.GONE);
                     i++;
                 } else if (key.equals("mail")) {
                     frameLayouts[i].setVisibility(View.VISIBLE);
                     textViews[i].setText(Integer.toString(len));
                     imageViews[i].setImageResource(R.drawable.mail);
+                    names[i].setVisibility(View.GONE);
                     i++;
                 } else if (key.length() != 0) {
                     frameLayouts[i].setVisibility(View.VISIBLE);
                     textViews[i].setText(Integer.toString(len));
-                    imageViews[i].setImageResource(R.drawable.people);
+                    imageViews[i].setImageResource(R.drawable.face);
+                    names[i].setVisibility(View.VISIBLE);
+                    names[i].setText(key.substring(0, 3));
                     i++;
                 }
             }

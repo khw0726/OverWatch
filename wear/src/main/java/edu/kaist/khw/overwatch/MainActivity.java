@@ -89,7 +89,20 @@ public class MainActivity extends WearableActivity implements
                     parseNotifications(dataMap.getString(TAG_JSON), true);
                 }
                 else if(item.getUri().getPath().compareTo("/groupView") == 0) {
+                    DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
                     Intent intent = new Intent(this, NotificationGroupActivity.class);
+                    String json = dataMap.getString(TAG_JSON);
+                    notis = new ArrayList<>();
+                    try {
+                        JSONArray notifications = new JSONArray(json);
+                        for(int i = 0; i< notifications.length(); i++){
+                            JSONObject j = notifications.getJSONObject(i);
+                            notis.add(j);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     intent.putExtra("setTimer", true);
                     startActivity(intent);
                 } else if(item.getUri().getPath().compareTo("/baselineView") == 0) {
