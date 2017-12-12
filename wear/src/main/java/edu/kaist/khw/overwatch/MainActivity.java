@@ -97,7 +97,16 @@ public class MainActivity extends WearableActivity implements
                         JSONArray notifications = new JSONArray(json);
                         for(int i = 0; i< notifications.length(); i++){
                             JSONObject j = notifications.getJSONObject(i);
-                            notis.add(j);
+                            final JSONArray contents = j.getJSONArray("contents");
+                            for(int k=0; k< contents.length(); k++) {
+                                JSONObject content = contents.getJSONObject(k);
+                                JSONObject newJSON = new JSONObject();
+                                newJSON.put("package", j.getString("package"));
+                                newJSON.put("group", j.getString("group"));
+                                newJSON.put("title", content.getString("title"));
+                                newJSON.put("text", content.getString("text"));
+                                notis.add(newJSON);
+                            }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -123,7 +132,7 @@ public class MainActivity extends WearableActivity implements
             JSONArray notifications = new JSONArray(json);
             Random random = new Random();
             Timer timer = new Timer();
-            timer.schedule(new MyTimerTask(timer, random, notifications, 0, isGroupView), random.nextInt(30000) + 30000);
+            timer.schedule(new MyTimerTask(timer, random, notifications, 0, isGroupView), random.nextInt(20000) + 20000);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -209,7 +218,7 @@ public class MainActivity extends WearableActivity implements
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                timer.schedule(new MyTimerTask(timer, random, notifications, index + 1, isGroupView), 30000 + random.nextInt(30000));
+                timer.schedule(new MyTimerTask(timer, random, notifications, index + 1, isGroupView), 20000 + random.nextInt(20000));
             } else {
                 asdf.setText("DONE!");
             }
